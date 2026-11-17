@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#080d18">
+  <title>AURORA 2.0 — 极光突围</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">✦</span><div><b>AURORA</b><small>2.0 / NEON FRONTIER</small></div></div>
+      <div class="top-stats">
+        <div><small>分数</small><strong id="score">000000</strong></div>
+        <div><small>波次</small><strong id="wave">01</strong></div>
+        <div><small>击破</small><strong id="kills">0</strong></div>
+      </div>
+      <button id="pauseBtn" class="icon-btn" aria-label="暂停">Ⅱ</button>
+    </header>
+
+    <section class="game-shell">
+      <canvas id="game" aria-label="AURORA 2.0 游戏画面"></canvas>
+      <div class="hud">
+        <div class="hud-left">
+          <div class="meter-card"><div class="meter-label"><span>能量核心</span><b id="hpText">100%</b></div><div class="meter"><i id="hpBar"></i></div></div>
+          <div class="meter-card shield-card"><div class="meter-label"><span>护盾</span><b id="shieldText">100%</b></div><div class="meter shield-meter"><i id="shieldBar"></i></div></div>
+        </div>
+        <div class="hud-right"><div class="weapon-label">当前模块</div><strong id="weaponName">脉冲星</strong><small id="weaponHint">快速能量弹 · 单发</small></div>
+      </div>
+
+      <div id="startScreen" class="overlay">
+        <div class="panel start-panel">
+          <div class="eyebrow">TACTICAL SIMULATION / 02</div>
+          <h1>AURORA <em>2.0</em></h1>
+          <p>穿越霓虹边境，在不断变化的能量场中生存。</p>
+          <div class="feature-row"><span>✦ 多种能量模块</span><span>✦ 动态敌群</span><span>✦ 多区域地图</span></div>
+          <button id="startBtn" class="primary-btn">启动模拟 <span>→</span></button>
+          <div class="controls-note">电脑：WASD / 方向键移动，鼠标瞄准并点击发射，空格冲刺<br>手机：左侧摇杆移动，右侧按住发射，点击模块切换</div>
+        </div>
+      </div>
+
+      <div id="pauseScreen" class="overlay hidden">
+        <div class="panel compact-panel"><div class="eyebrow">SIMULATION PAUSED</div><h2>暂停中</h2><p>模拟已暂时冻结。</p><button id="resumeBtn" class="primary-btn">继续游戏 →</button></div>
+      </div>
+
+      <div id="upgradeScreen" class="overlay hidden">
+        <div class="panel upgrade-panel"><div class="eyebrow">CORE EVOLUTION</div><h2>选择能量强化</h2><p>核心升级完成。选择一项继续前进。</p><div id="upgradeChoices" class="choice-grid"></div></div>
+      </div>
+
+      <div id="gameOverScreen" class="overlay hidden">
+        <div class="panel compact-panel"><div class="eyebrow">SIMULATION COMPLETE</div><h2>本轮结束</h2><p>最终分数：<b id="finalScore">0</b></p><button id="restartBtn" class="primary-btn">重新启动 →</button></div>
+      </div>
+    </section>
+
+    <footer class="bottom-bar">
+      <div class="weapon-strip" id="weaponStrip">
+        <button class="weapon active" data-weapon="pulse"><span>✧</span><b>脉冲星</b><small>快速</small></button>
+        <button class="weapon" data-weapon="fan"><span>❋</span><b>星尘扇</b><small>扩散</small></button>
+        <button class="weapon" data-weapon="orb"><span>◉</span><b>引力球</b><small>重型</small></button>
+        <button class="weapon" data-weapon="beam"><span>╱</span><b>光棱线</b><small>贯穿</small></button>
+        <button class="weapon" data-weapon="nova"><span>✺</span><b>新星环</b><small>环形</small></button>
+      </div>
+      <div class="bottom-hint"><span class="live-dot"></span> SYSTEM ONLINE <span>·</span> <span id="enemyCount">0</span> 个能量信号</div>
+    </footer>
+
+    <div class="mobile-controls" id="mobileControls">
+      <div class="stick-zone" id="stickZone"><div class="stick-base"><div id="stickKnob"></div></div></div>
+      <button id="fireTouch" class="fire-touch">发射</button>
+      <button id="dashTouch" class="dash-touch">冲刺</button>
+    </div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
